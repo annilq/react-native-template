@@ -9,7 +9,7 @@ import NotificationList from "./notification";
 
 const RootNavigator = TabNavigator(
   {
-    projectStack: {
+    projects: {
       screen: ProjectStack,
       navigationOptions: {
         title: "知乎"
@@ -33,7 +33,7 @@ const RootNavigator = TabNavigator(
         title: "知乎"
       }
     },
-    notification: {
+    notifications: {
       screen: NotificationList
     }
   },
@@ -41,7 +41,24 @@ const RootNavigator = TabNavigator(
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
-        console.log(navigation.state);
+        let iconName = "";
+        switch (routeName) {
+          case "projects":
+            iconName = "pro";
+            break;
+          case "tasks":
+            iconName = "tasks";
+            break;
+          case "orders":
+            iconName = "orders";
+            break;
+          case "user":
+            iconName = "user";
+            break;
+          case "notifications":
+            iconName = "notify";
+            break;
+        }
         return (
           <Text
             style={{
@@ -50,10 +67,11 @@ const RootNavigator = TabNavigator(
               alignItems: "center"
             }}
           >
-            {routeName}
+            {iconName}
           </Text>
         );
-      }
+      },
+      title:"11"
     }),
     tabBarOptions: {
       activeTintColor: "tomato",
@@ -70,8 +88,4 @@ const RootNavigator = TabNavigator(
   }
 );
 
-export default class App extends React.Component {
-  render() {
-    return <RootNavigator />;
-  }
-}
+export default RootNavigator

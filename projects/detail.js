@@ -28,11 +28,7 @@ class DetailsScreen extends React.Component {
           onPress={() => this.props.navigation.goBack()}
         />
         <Button
-          title="model"
-          onPress={() => this.props.navigation.navigate("user")}
-        />
-        <Button
-          title="Update the title"
+          title="更新标题"
           onPress={() =>
             this.props.navigation.setParams({
               otherParam: "详情param Updated!"

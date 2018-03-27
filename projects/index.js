@@ -6,7 +6,12 @@ import ProjectDetail from "./detail";
 
 class ProjectList extends React.Component {
   static navigationOptions = {
-    headerTitle: <Title>知乎首页</Title>
+    headerTitle: "知乎首页"
+  };
+  logout = () => {
+    console.log(11);
+    // this.props.navigation.navigate("Login");
+    console.log(this.props.navigation.navigate("Login"));
   };
   render() {
     return (
@@ -22,6 +27,7 @@ class ProjectList extends React.Component {
             })
           }
         />
+        <Button title="logout" onPress={this.logout} />
       </View>
     );
   }
