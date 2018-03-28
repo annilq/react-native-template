@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Text, TextInput, Button, Image, StyleSheet } from "react-native";
-import { withNavigation } from "react-navigation";
-
 class Login extends React.Component {
   state = { username: "", password: "" };
   onPressLearnMore = () => {
@@ -33,10 +31,8 @@ class Login extends React.Component {
         <View>
           <TextInput
             placeholder="密码"
-            // password={true}
             secureTextEntry={true}
             style={styles.inputStyle}
-            returnKeyLabel="登录"
             returnKeyType="done"
             ref={input => {
               this.passwordInput = input;
@@ -94,4 +90,4 @@ const styles = StyleSheet.create({
     lineHeight: 40
   }
 });
-export default withNavigation(Login);
+export default Login;

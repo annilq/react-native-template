@@ -7,7 +7,7 @@ class OrderList extends React.Component {
   };
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View>
         <Text>知乎详情</Text>
       </View>
     );

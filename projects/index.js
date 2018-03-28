@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, View, Text } from "react-native";
-import { StackNavigator } from "react-navigation";
+import { StackNavigator, NavigationActions } from "react-navigation";
 import Title from "../components/title";
 import ProjectDetail from "./detail";
 
@@ -9,13 +9,11 @@ class ProjectList extends React.Component {
     headerTitle: "知乎首页"
   };
   logout = () => {
-    console.log(11);
-    // this.props.navigation.navigate("Login");
-    console.log(this.props.navigation.navigate("Login"));
+    this.props.navigation.navigate("Login");
   };
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View>
         <Text>知乎首页</Text>
         <Button
           title="知乎"

@@ -10,69 +10,59 @@ import NotificationList from "./notification";
 const RootNavigator = TabNavigator(
   {
     projects: {
-      screen: ProjectStack,
-      navigationOptions: {
-        title: "知乎"
-      }
+      screen: ProjectStack
     },
     tasks: {
-      screen: Task,
-      navigationOptions: {
-        title: "知乎"
-      }
+      screen: Task
     },
     orders: {
-      screen: Order,
-      navigationOptions: {
-        title: "知乎"
-      }
+      screen: Order
     },
     user: {
-      screen: User,
-      navigationOptions: {
-        title: "知乎"
-      }
+      screen: User
     },
     notifications: {
       screen: NotificationList
     }
   },
   {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName = "";
-        switch (routeName) {
-          case "projects":
-            iconName = "pro";
-            break;
-          case "tasks":
-            iconName = "tasks";
-            break;
-          case "orders":
-            iconName = "orders";
-            break;
-          case "user":
-            iconName = "user";
-            break;
-          case "notifications":
-            iconName = "notify";
-            break;
-        }
-        return (
-          <Text
-            style={{
-              color: "#000",
-              overflow: "hidden",
-              alignItems: "center"
-            }}
-          >
-            {iconName}
-          </Text>
-        );
-      },
-      title:"11"
-    }),
+    navigationOptions: ({ navigation }) => {
+      const { routeName } = navigation.state;
+      return {
+        tabBarIcon: ({ focused, tintColor }) => {
+          let iconName = "";
+          switch (routeName) {
+            case "projects":
+              iconName = "pro";
+              break;
+            case "tasks":
+              iconName = "tasks";
+              break;
+            case "orders":
+              iconName = "orders";
+              break;
+            case "user":
+              iconName = "user";
+              break;
+            case "notifications":
+              iconName = "notify";
+              break;
+          }
+          return (
+            <Text
+              style={{
+                color: "#000",
+                overflow: "hidden",
+                alignItems: "center"
+              }}
+            >
+              {iconName}
+            </Text>
+          );
+        },
+        title: routeName
+      };
+    },
     tabBarOptions: {
       activeTintColor: "tomato",
       inactiveTintColor: "gray",
@@ -88,4 +78,4 @@ const RootNavigator = TabNavigator(
   }
 );
 
-export default RootNavigator
+export default RootNavigator;
