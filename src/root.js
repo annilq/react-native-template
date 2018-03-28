@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
-import { TabNavigator, TabBarBottom } from "react-navigation";
+import { SwitchNavigator, TabNavigator, TabBarBottom } from "react-navigation";
+import Login from "./login";
 import Task from "./task";
 import Order from "./order";
 import ProjectStack from "./projects";
@@ -72,4 +73,12 @@ const RootNavigator = TabNavigator(AppRoutes, {
   swipeEnabled: false
 });
 
-export default RootNavigator;
+export default SwitchNavigator(
+  {
+    App: RootNavigator,
+    Login: Login
+  },
+  {
+    initialRouteName: "App"
+  }
+);
