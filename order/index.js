@@ -2,9 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 
 class OrderList extends React.Component {
-  static navigationOptions = {
-    title: "知乎首页"
-  };
+
   render() {
     return (
       <View>
@@ -14,4 +12,4 @@ class OrderList extends React.Component {
   }
 }
 
-export default OrderList
+export default OrderList;

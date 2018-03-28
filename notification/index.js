@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { StackNavigator } from "react-navigation";
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
 class NotificationList extends React.Component {
   static navigationOptions = {
@@ -13,21 +13,22 @@ class NotificationList extends React.Component {
           <Text style={styles.text}>{item.title}</Text>
           <Text style={styles.text}>{item.detail}</Text>
         </View>
-        <View style={styles.arrow}><Text>{">"}</Text></View>
+        <View style={styles.arrow}>
+          <Text>{">"}</Text>
+        </View>
       </View>
-    )
-
-  }
+    );
+  };
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          keyExtractor={(item) => item.title}
+          keyExtractor={item => item.title}
           data={[
-            { title: 'Devin', detail: "DevinDevinDevinDevinDevinDevin" },
-            { title: 'daivd', detail: "DevinDevinDevinDevinDevinDevin" },
-            { title: 'annilq', detail: "DevinDevinDevinDevinDevinDevin" },
-            { title: 'leters', detail: "DevinDevinDevinDevinDevinDevin" },
+            { title: "Devin", detail: "DevinDevinDevinDevinDevinDevin" },
+            { title: "daivd", detail: "DevinDevinDevinDevinDevinDevin" },
+            { title: "annilq", detail: "DevinDevinDevinDevinDevinDevin" },
+            { title: "leters", detail: "DevinDevinDevinDevinDevinDevin" }
           ]}
           renderItem={this.notifyItem}
         />
@@ -38,24 +39,24 @@ class NotificationList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   item: {
     flexDirection: "row",
-    alignItems: 'center',
+    alignItems: "center",
     padding: 5,
     margin: 5,
     borderColor: "#aaa",
-    borderWidth: 1,
+    borderWidth: 1
   },
   text: {
     lineHeight: 20,
-    fontSize: 16,
+    fontSize: 16
   },
   arrow: {
-    width: 20,
+    width: 20
   }
-})
+});
 const NotifyNavigator = StackNavigator(
   {
     NotificationList: NotificationList

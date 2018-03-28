@@ -6,76 +6,70 @@ import Order from "./order";
 import ProjectStack from "./projects";
 import User from "./user";
 import NotificationList from "./notification";
+const AppRoutesInfo = {
+  projects: {
+    title: "思考",
+    iconName: "projects"
+  },
+  tasks: {
+    title: "讨论",
+    iconName: "tasks"
+  },
+  orders: {
+    title: "想法",
+    iconName: "orders"
+  },
+  user: {
+    title: "动态",
+    iconName: "user"
+  },
+  notifications: {
+    title: "我的",
+    iconName: "notify"
+  }
+};
 
-const RootNavigator = TabNavigator(
-  {
-    projects: {
-      screen: ProjectStack
-    },
-    tasks: {
-      screen: Task
-    },
-    orders: {
-      screen: Order
-    },
-    user: {
-      screen: User
-    },
-    notifications: {
-      screen: NotificationList
+const AppRoutes = {
+  projects: ProjectStack,
+  tasks: Task,
+  orders: Order,
+  user: User,
+  notifications: NotificationList
+};
+
+const RootNavigator = TabNavigator(AppRoutes, {
+  navigationOptions: ({ navigation }) => {
+    const { routeName } = navigation.state;
+    const { iconName, title } = AppRoutesInfo[routeName];
+    return {
+      tabBarIcon: ({ focused, tintColor }) => {
+        return (
+          <Text
+            style={{
+              color: "#000",
+              overflow: "hidden",
+              alignItems: "center"
+            }}
+          >
+            {iconName}
+          </Text>
+        );
+      },
+      title: title
+    };
+  },
+  tabBarOptions: {
+    activeTintColor: "tomato",
+    inactiveTintColor: "gray",
+    //showLabel:false,
+    style: {
+      backgroundColor: "#fff"
     }
   },
-  {
-    navigationOptions: ({ navigation }) => {
-      const { routeName } = navigation.state;
-      return {
-        tabBarIcon: ({ focused, tintColor }) => {
-          let iconName = "";
-          switch (routeName) {
-            case "projects":
-              iconName = "pro";
-              break;
-            case "tasks":
-              iconName = "tasks";
-              break;
-            case "orders":
-              iconName = "orders";
-              break;
-            case "user":
-              iconName = "user";
-              break;
-            case "notifications":
-              iconName = "notify";
-              break;
-          }
-          return (
-            <Text
-              style={{
-                color: "#000",
-                overflow: "hidden",
-                alignItems: "center"
-              }}
-            >
-              {iconName}
-            </Text>
-          );
-        },
-        title: routeName
-      };
-    },
-    tabBarOptions: {
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray",
-      //showLabel:false,
-      style: {
-        backgroundColor: "#fff"
-      }
-    },
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: "bottom",
-    animationEnabled: false,
-    swipeEnabled: false
-  }
-);
+  tabBarComponent: TabBarBottom,
+  tabBarPosition: "bottom",
+  animationEnabled: false,
+  swipeEnabled: false
+});
 
 export default RootNavigator;
