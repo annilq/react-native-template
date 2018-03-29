@@ -1,27 +1,32 @@
 //referrence: https://medium.com/@kelleyannerose/react-native-activityindicator-for-a-quick-easy-loading-animation-593c06c044dc
 import React, { Component } from "react";
 import { StyleSheet, View, Modal, ActivityIndicator } from "react-native";
-
-const Loader = props => {
-  const { loading, ...attributes } = props;
-
-  return (
-    <Modal
-      transparent={true}
-      animationType={"none"}
-      visible={false}
-      onRequestClose={() => {
-        console.log("close modal");
-      }}
-    >
-      <View style={styles.modalBackground}>
-        <View style={styles.activityIndicatorWrapper}>
-          <ActivityIndicator animating={loading} />
+import { inject, observer } from "mobx-react";
+@inject(["store"])
+@observer
+class Loader extends React.Component {
+  render() {
+    const { store, ...attributes } = this.props;
+    console.log(store.loaderVisible);
+    
+    return (
+      <Modal
+        transparent={true}
+        animationType={"none"}
+        visible={store.loaderVisible}
+        onRequestClose={() => {
+          console.log("close modal");
+        }}
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.activityIndicatorWrapper}>
+            <ActivityIndicator animating={store.loaderVisible} />
+          </View>
         </View>
-      </View>
-    </Modal>
-  );
-};
+      </Modal>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   modalBackground: {

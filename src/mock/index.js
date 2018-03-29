@@ -15,6 +15,9 @@ mock.onGet(Api.notify).reply(200, {
   ],
   code: 0
 });
-
+mock.onGet(Api.login).reply(200, {
+  data: { result: "login success" },
+  code: 0
+});
 // 未匹配的api由后台处理
 mock.onAny().passThrough();

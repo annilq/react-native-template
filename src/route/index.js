@@ -80,7 +80,7 @@ const AppNavigator = TabNavigator(AppRoutes, {
       Login: Login
     },
     {
-      initialRouteName: "App"
+      initialRouteName: "Login"
     }
   );
   

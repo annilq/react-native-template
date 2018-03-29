@@ -1,12 +1,19 @@
 import React from "react";
 import { View, Text, TextInput, Button, Image, StyleSheet } from "react-native";
+import { Request, Api } from "../util";
+
 class Login extends React.Component {
   state = { username: "", password: "" };
-  onPressLearnMore = () => {
-    console.log(11);
+  forgetPwd = () => {
+    console.log("forgetPwd");
+  };
+  register = () => {
+    console.log("register");
   };
   login = () => {
-    this.props.navigation.navigate("App");
+    Request.get(Api.login).then(data => {
+      this.props.navigation.navigate("App");
+    });
   };
   render() {
     return (
@@ -17,7 +24,7 @@ class Login extends React.Component {
         <View>
           <TextInput
             placeholder="用户名"
-            autoFocus={true}
+            // autoFocus={true}
             style={styles.inputStyle}
             returnKeyType="next"
             onSubmitEditing={() => {
@@ -47,14 +54,14 @@ class Login extends React.Component {
           <Text
             style={styles.btnText}
             suppressHighlighting={true}
-            onPress={this.onPressLearnMore}
+            onPress={this.forgetPwd}
           >
             注册帐号
           </Text>
           <Text
             style={styles.btnText}
             suppressHighlighting={true}
-            onPress={this.onPressLearnMore}
+            onPress={this.register}
           >
             忘记密码
           </Text>
