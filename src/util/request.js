@@ -2,13 +2,13 @@ import axios from "axios";
 import AppStore from "../store";
 
 axios.interceptors.request.use(
-  function(config) {
+  function (config) {
     AppStore.showLoader();
     // Do something before request is sent
     config.timeout = config.timeout || 7000;
     return config;
   },
-  function(error) {
+  function (error) {
     // Do something with request error
     console.log(error);
     return Promise.reject(error);
@@ -17,12 +17,12 @@ axios.interceptors.request.use(
 
 // Add a response interceptor
 axios.interceptors.response.use(
-  function(response) {
+  function (response) {
     AppStore.hideLoader();
     // Do something with response data
     return parseRes(response);
   },
-  function(error) {
+  function (error) {
     AppStore.hideLoader();
     // Do something with response error
     return Promise.reject(error.message);
@@ -34,7 +34,7 @@ function parseRes(response) {
     if (response.data.code === -1) {
       // 过期code
       Request.logout();
-      return Promise.reject(response.data.message);
+      return Promise.resolve(response.data.message);
       // 外部服务用status和result表示状态以及结果
     } else if (response.data.code === 0) {
       // 正常code
@@ -42,7 +42,7 @@ function parseRes(response) {
       return Promise.resolve(response.data.data);
     } else {
       // 其他code
-      return Promise.reject(response.data.message);
+      return Promise.resolve(response.data.message);
     }
   }
   return response;
@@ -58,7 +58,7 @@ class Request {
   };
   postFormData = (url, data = {}) => {
     let formData = this.transFormData(data);
-    return axios.post(url, formData);
+    return this.post(url, formData);
   };
   delete = url => {
     return axios.delete(url);

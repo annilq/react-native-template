@@ -13,7 +13,7 @@ mock.onGet(Api.notify).reply(200, {
     { title: "annilq", detail: "DevinDevinDevinDevinDevinDevin" },
     { title: "leters", detail: "DevinDevinDevinDevinDevinDevin" }
   ],
-  code: 0
+  code: -1
 });
 mock.onGet(Api.login).reply(200, {
   data: { result: "login success" },

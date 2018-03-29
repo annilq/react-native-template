@@ -7,7 +7,7 @@ import { inject, observer } from "mobx-react";
 class Loader extends React.Component {
   render() {
     const { store, ...attributes } = this.props;
-    console.log(store.loaderVisible);
+    console.log("loaderVisible",store.loaderVisible);
     
     return (
       <Modal

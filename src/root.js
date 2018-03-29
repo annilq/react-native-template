@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { inject, observer, Provider } from "mobx-react";
+import { Provider } from "mobx-react";
 import { Loader } from "./components";
 import AppStore from "./store";
 import App from "./route";
