@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, TextInput, Button, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Image,
+  StyleSheet,
+  AsyncStorage
+} from "react-native";
 import { Request, Api } from "../util";
 
 class Login extends React.Component {
@@ -10,10 +18,10 @@ class Login extends React.Component {
   register = () => {
     console.log("register");
   };
-  login = () => {
-    Request.get(Api.login).then(data => {
-      this.props.navigation.navigate("App");
-    });
+  login = async () => {
+    let data = await Request.get(Api.login);
+    await AsyncStorage.setItem("userToken", `userToken-${Date.now()}`);
+    this.props.navigation.navigate("App");
   };
   render() {
     return (

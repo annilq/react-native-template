@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, View, Text } from "react-native";
+import { Button, View, Text, AsyncStorage } from "react-native";
 import { StackNavigator, NavigationActions } from "react-navigation";
-import Title from "../components/title";
 import ProjectDetail from "./detail";
 
 class ProjectList extends React.Component {
   static navigationOptions = {
     headerTitle: "知乎首页"
   };
-  logout = () => {
+  logout = async () => {
+    await AsyncStorage.removeItem("userToken");
     this.props.navigation.navigate("Login");
   };
   render() {

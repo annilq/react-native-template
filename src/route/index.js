@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { SwitchNavigator, TabNavigator, TabBarBottom } from "react-navigation";
+import { Auth } from "../components";
 import Login from "../login";
 import Task from "../task";
 import Order from "../order";
@@ -40,48 +41,49 @@ const AppRoutes = {
 };
 // tab组件，包含登陆后的应用路由
 const AppNavigator = TabNavigator(AppRoutes, {
-    navigationOptions: ({ navigation }) => {
-      const { routeName } = navigation.state;
-      const { iconName, title } = AppRoutesInfo[routeName];
-      return {
-        tabBarIcon: ({ focused, tintColor }) => {
-          return (
-            <Text
-              style={{
-                color: "#000",
-                overflow: "hidden",
-                alignItems: "center"
-              }}
-            >
-              {iconName}
-            </Text>
-          );
-        },
-        title: title
-      };
-    },
-    tabBarOptions: {
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray",
-      //showLabel:false,
-      style: {
-        backgroundColor: "#fff"
-      }
-    },
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: "bottom",
-    animationEnabled: false,
-    swipeEnabled: false
-  });
-  // app组件包含，登录组件与登陆成功后的应用组件
-  const App = SwitchNavigator(
-    {
-      App: AppNavigator,
-      Login: Login
-    },
-    {
-      initialRouteName: "Login"
+  navigationOptions: ({ navigation }) => {
+    const { routeName } = navigation.state;
+    const { iconName, title } = AppRoutesInfo[routeName];
+    return {
+      tabBarIcon: ({ focused, tintColor }) => {
+        return (
+          <Text
+            style={{
+              color: "#000",
+              overflow: "hidden",
+              alignItems: "center"
+            }}
+          >
+            {iconName}
+          </Text>
+        );
+      },
+      title: title
+    };
+  },
+  tabBarOptions: {
+    activeTintColor: "tomato",
+    inactiveTintColor: "gray",
+    //showLabel:false,
+    style: {
+      backgroundColor: "#fff"
     }
-  );
-  
+  },
+  tabBarComponent: TabBarBottom,
+  tabBarPosition: "bottom",
+  animationEnabled: false,
+  swipeEnabled: false
+});
+// app组件包含，登录组件与登陆成功后的应用组件
+const App = SwitchNavigator(
+  {
+    Auth: Auth,
+    Login: Login,
+    App: AppNavigator
+  },
+  {
+    initialRouteName: "Auth"
+  }
+);
+
 export default App;
