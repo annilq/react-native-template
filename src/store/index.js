@@ -1,13 +1,13 @@
 import { observable, action } from "mobx";
 class AppStore {
   @observable loaderVisible = false;
-  @observable isLogin = false;
+  @observable isLogin = true;
   @action
   login(task) {
     this.isLogin = true;
   }
   @action
-  logout(task) {
+  logout() {
     this.isLogin = false;
   }
   @action
