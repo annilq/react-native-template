@@ -1,11 +1,12 @@
 import React from "react";
 import { StackNavigator } from "react-navigation";
 import { FlatList, StyleSheet, Text, View } from "react-native";
-
+import { Request, Api } from "../util";
 class NotificationList extends React.Component {
   static navigationOptions = {
-    headerTitle: "知乎首页"
+    headerTitle: "提醒"
   };
+  state = { data: [] };
   notifyItem = ({ item }) => {
     return (
       <View style={styles.item}>
@@ -19,17 +20,17 @@ class NotificationList extends React.Component {
       </View>
     );
   };
+  componentDidMount = () => {
+    Request.get(Api.notify).then(data => {
+      this.setState({ data });
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           keyExtractor={item => item.title}
-          data={[
-            { title: "Devin", detail: "DevinDevinDevinDevinDevinDevin" },
-            { title: "daivd", detail: "DevinDevinDevinDevinDevinDevin" },
-            { title: "annilq", detail: "DevinDevinDevinDevinDevinDevin" },
-            { title: "leters", detail: "DevinDevinDevinDevinDevinDevin" }
-          ]}
+          data={this.state.data}
           renderItem={this.notifyItem}
         />
       </View>

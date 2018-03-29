@@ -8,6 +8,7 @@ import Order from "./order";
 import ProjectStack from "./projects";
 import User from "./user";
 import NotificationList from "./notification";
+import "./mock";
 const AppRoutesInfo = {
   projects: {
     title: "思考",
