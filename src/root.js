@@ -1,6 +1,7 @@
 import React from "react";
-import { Text } from "react-native";
+import { View, Text } from "react-native";
 import { SwitchNavigator, TabNavigator, TabBarBottom } from "react-navigation";
+import Loader from "./components/loader";
 import Login from "./login";
 import Task from "./task";
 import Order from "./order";
@@ -37,8 +38,8 @@ const AppRoutes = {
   user: User,
   notifications: NotificationList
 };
-
-const RootNavigator = TabNavigator(AppRoutes, {
+// tab组件，包含登陆后的应用路由
+const AppNavigator = TabNavigator(AppRoutes, {
   navigationOptions: ({ navigation }) => {
     const { routeName } = navigation.state;
     const { iconName, title } = AppRoutesInfo[routeName];
@@ -72,13 +73,30 @@ const RootNavigator = TabNavigator(AppRoutes, {
   animationEnabled: false,
   swipeEnabled: false
 });
-
-export default SwitchNavigator(
+// app组件包含，登录组件与登陆成功后的应用组件
+const App = SwitchNavigator(
   {
-    App: RootNavigator,
+    App: AppNavigator,
     Login: Login
   },
   {
     initialRouteName: "App"
   }
 );
+// 最后的程序组件，包含app组件，与功能组件
+class Root extends React.Component {
+  render() {
+    return (
+      <View
+        style={{
+          flex: 1
+        }}
+      >
+        <App />
+        <Loader />
+      </View>
+    );
+  }
+}
+
+export default Root;
