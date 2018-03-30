@@ -8,7 +8,7 @@ import {
   StyleSheet,
   AsyncStorage
 } from "react-native";
-import { Request, Api } from "../util";
+import { Request, Api } from "../../util";
 
 class Login extends React.Component {
   state = { username: "", password: "" };

@@ -2,12 +2,12 @@ import React from "react";
 import { View, Text } from "react-native";
 import { SwitchNavigator, TabNavigator, TabBarBottom } from "react-navigation";
 import { Auth } from "../components";
-import Login from "../login";
-import Task from "../task";
-import Order from "../order";
-import ProjectStack from "../projects";
-import User from "../user";
-import NotificationList from "../notification";
+import Login from "./login";
+import Task from "./task";
+import Order from "./order";
+import ProjectStack from "./projects";
+import User from "./user";
+import NotificationList from "./notification";
 
 const AppRoutesInfo = {
   projects: {

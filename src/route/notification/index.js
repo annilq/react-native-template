@@ -1,7 +1,7 @@
 import React from "react";
 import { StackNavigator } from "react-navigation";
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import { Request, Api } from "../util";
+import { Request, Api } from "../../util";
 class NotificationList extends React.Component {
   static navigationOptions = {
     headerTitle: "提醒"
