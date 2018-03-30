@@ -6,7 +6,9 @@ import {
   StyleSheet,
   AsyncStorage
 } from "react-native";
-
+import { inject, observer } from "mobx-react";
+@inject(["store"])
+@observer
 class AuthLoadingScreen extends React.Component {
   constructor() {
     super();
@@ -22,6 +24,7 @@ class AuthLoadingScreen extends React.Component {
 
   // Render any loading content that you like here
   render() {
+    console.log("authLogin",this.props.store.isLogin);
     return (
       <View style={styles.container}>
         <ActivityIndicator />

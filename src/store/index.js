@@ -3,20 +3,22 @@ class AppStore {
   @observable loaderVisible = false;
   @observable isLogin = true;
   @action
-  login(task) {
+  login = () => {
+    console.log("action login")    
     this.isLogin = true;
-  }
+  };
   @action
-  logout() {
+  logout = () => {
+    console.log("action logout")
     this.isLogin = false;
-  }
+  };
   @action
-  showLoader() {
+  showLoader = () => {
     this.loaderVisible = true;
-  }
+  };
   @action
-  hideLoader() {
+  hideLoader = () => {
     this.loaderVisible = false;
-  }
+  };
 }
 export default new AppStore();

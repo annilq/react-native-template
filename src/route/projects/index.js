@@ -2,14 +2,20 @@ import React from "react";
 import { Button, View, Text, AsyncStorage } from "react-native";
 import { StackNavigator, NavigationActions } from "react-navigation";
 import ProjectDetail from "./detail";
-
+import { inject, observer } from "mobx-react";
+@inject(["store"])
+@observer
 class ProjectList extends React.Component {
   static navigationOptions = {
     headerTitle: "知乎首页"
   };
   logout = async () => {
     await AsyncStorage.removeItem("userToken");
-    this.props.navigation.navigate("Login");
+    if (this.props.store.isLogin) {
+      this.props.store.logout();
+    } else {
+      this.props.store.login();
+    }
   };
   render() {
     return (
@@ -25,7 +31,10 @@ class ProjectList extends React.Component {
             })
           }
         />
-        <Button title="logout" onPress={this.logout} />
+        <Button
+          title={this.props.store.isLogin ? "login" : "logout"}
+          onPress={this.logout}
+        />
       </View>
     );
   }
