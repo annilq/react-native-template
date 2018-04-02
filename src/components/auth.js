@@ -6,9 +6,6 @@ import {
   StyleSheet,
   AsyncStorage
 } from "react-native";
-// import { inject, observer } from "mobx-react";
-// @inject(["store"])
-// @observer
 class AuthLoadingScreen extends React.Component {
   constructor() {
     super();
@@ -19,12 +16,11 @@ class AuthLoadingScreen extends React.Component {
   _bootstrapAsync = async () => {
     const userToken = await AsyncStorage.getItem("userToken");
     console.log("userToken", userToken);
-    this.props.navigation.navigate(userToken ? "App" : "Login");
+    this.props.navigation.dispatch({ type: userToken ? "Login" : "Logout" });
   };
 
   // Render any loading content that you like here
   render() {
-    // console.log("authLogin",this.props.store.isLogin);
     return (
       <View style={styles.container}>
         <ActivityIndicator />

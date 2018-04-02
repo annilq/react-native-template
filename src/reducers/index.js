@@ -4,9 +4,9 @@ import { NavigationActions } from "react-navigation";
 import { App as AppNavigator } from "../route";
 
 // Start with two routes: The Main screen, with the Login screen on top.
-const secondAction = AppNavigator.router.getActionForPathAndParams("Auth");
-const initialNavState = AppNavigator.router.getStateForAction(secondAction);
-function appstate(state = initialNavState, action) {
+const action = AppNavigator.router.getActionForPathAndParams("Auth");
+const initialNavState = AppNavigator.router.getStateForAction(action);
+function routerState(state = initialNavState, action) {
   let nextState;
   switch (action.type) {
     case "Login":
@@ -32,20 +32,20 @@ function appstate(state = initialNavState, action) {
 
 // const initialAuthState = { isLogin: false };
 
-function auth(state = {}, action) {
+function appState(state = { isLogin: false, loaderVisible: false }, action) {
   switch (action.type) {
-    case "Login":
-      return { ...state, isLogin: true };
-    case "Logout":
-      return { ...state, isLogin: false };
+    case "showloader":
+      return { ...state, loaderVisible: true };
+    case "hideloader":
+      return { ...state, loaderVisible: false };
     default:
       return state;
   }
 }
 
 const AppReducer = combineReducers({
-  appstate,
-  auth
+  routerState,
+  appState
 });
 
 export default AppReducer;

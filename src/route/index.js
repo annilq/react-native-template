@@ -89,17 +89,17 @@ export const App = SwitchNavigator({
 });
 
 const mapStateToProps = state => ({
-  appstate: state.appstate
+  routerState: state.routerState
 });
 @connect(mapStateToProps)
 class AppWithNavigationState extends React.Component {
   render() {
-    const { dispatch, appstate } = this.props;
+    const { dispatch, routerState } = this.props;
     return (
       <App
         navigation={addNavigationHelpers({
           dispatch: this.props.dispatch,
-          state: this.props.appstate,
+          state: this.props.routerState,
           addListener
         })}
       />

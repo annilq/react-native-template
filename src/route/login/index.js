@@ -21,7 +21,7 @@ class Login extends React.Component {
   login = async () => {
     let data = await Request.get(Api.login);
     await AsyncStorage.setItem("userToken", `userToken-${Date.now()}`);
-    this.props.navigation.navigate("App");
+    this.props.navigation.dispatch({ type: "Login" });
   };
   render() {
     return (

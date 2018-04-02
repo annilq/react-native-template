@@ -22,7 +22,9 @@ class NotificationList extends React.Component {
   };
   componentDidMount = async () => {
     let data = await Request.get(Api.notify);
-    this.setState({ data });
+    if (data) {
+      this.setState({ data });
+    }
   };
   render() {
     return (
