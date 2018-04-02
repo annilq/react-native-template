@@ -2,6 +2,8 @@ import React from "react";
 import { StackNavigator } from "react-navigation";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { Request, Api } from "../../util";
+import navigationOptions from "../config/router";
+
 class NotificationList extends React.Component {
   static navigationOptions = {
     headerTitle: "提醒"
@@ -64,15 +66,7 @@ const NotifyNavigator = StackNavigator(
     NotificationList: NotificationList
   },
   {
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: "#f4511e"
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold"
-      }
-    }
+    navigationOptions: navigationOptions
   }
 );
 export default NotifyNavigator;

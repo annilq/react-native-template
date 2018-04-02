@@ -1,21 +1,17 @@
 import React from "react";
 import { Button, View, Text, AsyncStorage } from "react-native";
 import { StackNavigator } from "react-navigation";
+import navigationOptions from "../config/router";
 import ProjectDetail from "./detail";
 class ProjectList extends React.Component {
   static navigationOptions = {
-    headerTitle: "知乎首页"
-  };
-  logout = async () => {
-    await AsyncStorage.removeItem("userToken");
-    this.props.navigation.dispatch({ type: "Logout" });
+    headerTitle: "项目列表"
   };
   render() {
     return (
       <View>
-        <Text>知乎首页</Text>
         <Button
-          title="知乎"
+          title="GO详情"
           color="#841584"
           onPress={() =>
             this.props.navigation.navigate("projectsDetails", {
@@ -24,7 +20,6 @@ class ProjectList extends React.Component {
             })
           }
         />
-        <Button title={"logout"} onPress={this.logout} />
       </View>
     );
   }
@@ -40,16 +35,7 @@ const ProjectStack = StackNavigator(
     }
   },
   {
-    initialRouteName: "projects",
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: "#f4511e"
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold"
-      }
-    }
+    navigationOptions: navigationOptions
   }
 );
 export default ProjectStack;

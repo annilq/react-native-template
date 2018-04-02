@@ -8,42 +8,22 @@ import {
 } from "react-navigation";
 import { connect } from "react-redux";
 import { addListener } from "../utils/redux";
+import { AppRoutesInfo } from "./config/router";
 import { Auth } from "../components";
 import Login from "./login";
 import Task from "./task";
+import Im from "./im";
 import Order from "./order";
 import ProjectStack from "./projects";
 import User from "./user";
 import NotificationList from "./notification";
-
-const AppRoutesInfo = {
-  projects: {
-    title: "思考",
-    iconName: "projects"
-  },
-  tasks: {
-    title: "讨论",
-    iconName: "tasks"
-  },
-  orders: {
-    title: "想法",
-    iconName: "orders"
-  },
-  user: {
-    title: "动态",
-    iconName: "user"
-  },
-  notifications: {
-    title: "我的",
-    iconName: "notify"
-  }
-};
 
 const AppRoutes = {
   projects: ProjectStack,
   tasks: Task,
   orders: Order,
   user: User,
+  im: Im,
   notifications: NotificationList
 };
 // tab组件，包含登陆后的应用路由
