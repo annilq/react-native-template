@@ -1,21 +1,31 @@
 import React from "react";
 import { Button, View, Text, AsyncStorage } from "react-native";
-import { StackNavigator, NavigationActions } from "react-navigation";
+import { StackNavigator } from "react-navigation";
+import { connect } from "react-redux";
 import ProjectDetail from "./detail";
-import { inject, observer } from "mobx-react";
-@inject(["store"])
-@observer
+// import { inject, observer } from "mobx-react";
+// @inject(["store"])
+// @observer
+const mapStateToProps = state => ({
+  isLogin: state.auth.isLogin
+});
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch({ type: "Logout" })
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 class ProjectList extends React.Component {
   static navigationOptions = {
     headerTitle: "知乎首页"
   };
-  logout = async () => {
+  logoutqq = async () => {
     await AsyncStorage.removeItem("userToken");
-    if (this.props.store.isLogin) {
-      this.props.store.logout();
-    } else {
-      this.props.store.login();
-    }
+    // if (this.props.store.isLogin) {
+    this.props.logout();
+    // } else {
+    //   this.props.store.login();
+    // }
   };
   render() {
     return (
@@ -31,10 +41,7 @@ class ProjectList extends React.Component {
             })
           }
         />
-        <Button
-          title={this.props.store.isLogin ? "login" : "logout"}
-          onPress={this.logout}
-        />
+        <Button title={"logout"} onPress={this.logoutqq} />
       </View>
     );
   }

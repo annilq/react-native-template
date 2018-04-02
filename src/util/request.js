@@ -2,13 +2,13 @@ import axios from "axios";
 import AppStore from "../store";
 
 axios.interceptors.request.use(
-  function (config) {
-    AppStore.showLoader();
+  function(config) {
+    // AppStore.showLoader();
     // Do something before request is sent
     config.timeout = config.timeout || 7000;
     return config;
   },
-  function (error) {
+  function(error) {
     // Do something with request error
     console.log(error);
     return Promise.reject(error);
@@ -17,13 +17,13 @@ axios.interceptors.request.use(
 
 // Add a response interceptor
 axios.interceptors.response.use(
-  function (response) {
-    AppStore.hideLoader();
+  function(response) {
+    // AppStore.hideLoader();
     // Do something with response data
     return parseRes(response);
   },
-  function (error) {
-    AppStore.hideLoader();
+  function(error) {
+    // AppStore.hideLoader();
     // Do something with response error
     return Promise.reject(error.message);
   }
@@ -75,7 +75,7 @@ class Request {
   };
   static logout = () => {
     console.log("logout");
-    AppStore.logout();
+    AppStore.dispatch({ type: "Logout" });
   };
 }
 
